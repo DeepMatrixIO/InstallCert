@@ -70,3 +70,169 @@ keytool -exportcert -alias woot.com-1 -keystore jssecacerts -storepass changeit 
 yes
 
     Certificate was added to keystore
+
+### MAC
+```
+kaustubh@Kaustubhs-MacBook-Pro InstallCert % java --source 11 InstallCert.java kc.deepmatrix.io:8443
+Loading KeyStore /Library/Java/JavaVirtualMachines/jdk-17.0.3.jdk/Contents/Home/lib/security/cacerts...
+Opening connection to kc.deepmatrix.io:8443 ...
+Starting SSL handshake...
+
+javax.net.ssl.SSLHandshakeException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+        at java.base/sun.security.ssl.Alert.createSSLException(Alert.java:131)
+        at java.base/sun.security.ssl.TransportContext.fatal(TransportContext.java:371)
+        at java.base/sun.security.ssl.TransportContext.fatal(TransportContext.java:314)
+        at java.base/sun.security.ssl.TransportContext.fatal(TransportContext.java:309)
+        at java.base/sun.security.ssl.CertificateMessage$T13CertificateConsumer.checkServerCerts(CertificateMessage.java:1357)
+        at java.base/sun.security.ssl.CertificateMessage$T13CertificateConsumer.onConsumeCertificate(CertificateMessage.java:1232)
+        at java.base/sun.security.ssl.CertificateMessage$T13CertificateConsumer.consume(CertificateMessage.java:1175)
+        at java.base/sun.security.ssl.SSLHandshake.consume(SSLHandshake.java:396)
+        at java.base/sun.security.ssl.HandshakeContext.dispatch(HandshakeContext.java:480)
+        at java.base/sun.security.ssl.HandshakeContext.dispatch(HandshakeContext.java:458)
+        at java.base/sun.security.ssl.TransportContext.dispatch(TransportContext.java:201)
+        at java.base/sun.security.ssl.SSLTransport.decode(SSLTransport.java:172)
+        at java.base/sun.security.ssl.SSLSocketImpl.decode(SSLSocketImpl.java:1500)
+        at java.base/sun.security.ssl.SSLSocketImpl.readHandshakeRecord(SSLSocketImpl.java:1415)
+        at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:450)
+        at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:421)
+        at InstallCert.main(InstallCert.java:150)
+        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+        at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+        at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+        at jdk.compiler/com.sun.tools.javac.launcher.Main.execute(Main.java:419)
+        at jdk.compiler/com.sun.tools.javac.launcher.Main.run(Main.java:192)
+        at jdk.compiler/com.sun.tools.javac.launcher.Main.main(Main.java:132)
+Caused by: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+        at java.base/sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:439)
+        at java.base/sun.security.validator.PKIXValidator.engineValidate(PKIXValidator.java:306)
+        at java.base/sun.security.validator.Validator.validate(Validator.java:264)
+        at java.base/sun.security.ssl.X509TrustManagerImpl.checkTrusted(X509TrustManagerImpl.java:242)
+        at java.base/sun.security.ssl.X509TrustManagerImpl.checkServerTrusted(X509TrustManagerImpl.java:113)
+        at InstallCert$SavingTrustManager.checkServerTrusted(InstallCert.java:248)
+        at java.base/sun.security.ssl.AbstractTrustManagerWrapper.checkServerTrusted(SSLContextImpl.java:1441)
+        at java.base/sun.security.ssl.CertificateMessage$T13CertificateConsumer.checkServerCerts(CertificateMessage.java:1341)
+        ... 19 more
+Caused by: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+        at java.base/sun.security.provider.certpath.SunCertPathBuilder.build(SunCertPathBuilder.java:141)
+        at java.base/sun.security.provider.certpath.SunCertPathBuilder.engineBuild(SunCertPathBuilder.java:126)
+        at java.base/java.security.cert.CertPathBuilder.build(CertPathBuilder.java:297)
+        at java.base/sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:434)
+        ... 26 more
+
+Server sent 1 certificate(s):
+
+ 1 Subject CN=kc.deepmatrix.io, O=DeepMatrix, L=Bengaluru, ST=Karnataka, C=IN
+   Issuer  CN=kc.deepmatrix.io, O=DeepMatrix, L=Bengaluru, ST=Karnataka, C=IN
+   sha1    bf aa fe 98 05 0a e0 d9 27 5e c0 02 0d 92 de 84 e8 fc 97 dd 
+   md5     c7 d7 e4 53 59 9c 16 8d b4 8e 03 76 dc 1d 21 6f 
+
+Enter certificate to add to trusted keystore or 'q' to quit: [1]
+
+
+[
+[
+  Version: V3
+  Subject: CN=kc.deepmatrix.io, O=DeepMatrix, L=Bengaluru, ST=Karnataka, C=IN
+  Signature Algorithm: SHA256withRSA, OID = 1.2.840.113549.1.1.11
+
+  Key:  Sun RSA public key, 2048 bits
+  params: null
+  modulus: 22923923138358254873178277782287539790755915500787063062242488499825149839254851208835970716849345744241478265564375627727024166242416558466911028995807851830042809316849617062802813537613906892162378604673183891637791747536650838523838764115660563767562961101787832596770041910335103426385291100914959163110742177070898971572559296997981993560841146415398025061484363333827687830912572993756554529837777826260490498344441960059739772949032258169051888170137011825932829683655108507976383149340412333310691486829046755283227964141831384066667481529468233820569906539901873765052843512444964223119229439370046046890837
+  public exponent: 65537
+  Validity: [From: Thu Apr 21 01:05:55 IST 2022,
+               To: Fri Apr 21 01:05:55 IST 2023]
+  Issuer: CN=kc.deepmatrix.io, O=DeepMatrix, L=Bengaluru, ST=Karnataka, C=IN
+  SerialNumber: [    4553c1f9 82cc97d9 9c99e6e6 b82b1906 f44fc085]
+
+Certificate Extensions: 3
+[1]: ObjectId: 2.5.29.35 Criticality=false
+AuthorityKeyIdentifier [
+KeyIdentifier [
+0000: 4F 3B 61 7F 61 B9 94 48   E3 90 15 8B B6 99 0E D7  O;a.a..H........
+0010: 84 8C CD EC                                        ....
+]
+]
+
+[2]: ObjectId: 2.5.29.19 Criticality=true
+BasicConstraints:[
+  CA:true
+  PathLen: no limit
+]
+
+[3]: ObjectId: 2.5.29.14 Criticality=false
+SubjectKeyIdentifier [
+KeyIdentifier [
+0000: 4F 3B 61 7F 61 B9 94 48   E3 90 15 8B B6 99 0E D7  O;a.a..H........
+0010: 84 8C CD EC                                        ....
+]
+]
+
+]
+  Algorithm: [SHA256withRSA]
+  Signature:
+0000: 13 EA FF C6 43 96 F4 BD   7E DC D4 FC EF 39 C1 4B  ....C........9.K
+0010: 04 0A 36 44 FB CE 5C EF   DC A8 31 17 35 DB A7 E0  ..6D..\...1.5...
+0020: 67 C8 72 A1 5F 99 62 E0   4F D7 87 3F 68 C6 0F 29  g.r._.b.O..?h..)
+0030: 1C 2A FE C3 D0 82 E7 DD   21 0D E8 7D 19 6D D9 F3  .*......!....m..
+0040: 19 C3 EB 4A FD 91 FF 7A   0E 24 63 A5 90 D1 85 C3  ...J...z.$c.....
+0050: 06 60 05 6C 61 00 C2 4E   83 D5 D4 95 0D EB FF 4F  .`.la..N.......O
+0060: 31 13 5D 56 C0 81 19 58   54 4D 77 3A 6E 35 D3 7D  1.]V...XTMw:n5..
+0070: D4 79 97 BC B0 B8 69 E4   8B BB 0C FC BE 71 E9 DF  .y....i......q..
+0080: 59 5A 79 C5 B4 59 FA 1F   AE 78 C7 B3 EB 21 B8 3D  YZy..Y...x...!.=
+0090: 03 5C 64 B0 0C E5 30 38   BB 3C 41 33 F7 03 7E A0  .\d...08.<A3....
+00A0: 47 9F 42 7F AE 3C 24 C0   25 F1 6B 8A 72 16 18 2E  G.B..<$.%.k.r...
+00B0: BF 55 4E 1B F3 60 79 C0   1C 43 8C 8D 3C AB 00 CE  .UN..`y..C..<...
+00C0: DC A9 3F 06 00 A6 A2 5C   9B AC FF C5 03 89 D7 7C  ..?....\........
+00D0: A0 F1 7D 7E 93 86 7C 9F   08 B4 44 DA A7 C8 20 90  ..........D... .
+00E0: F3 0E DF 40 B4 A9 71 C5   9A A6 EB 7C 01 D6 70 44  ...@..q.......pD
+00F0: C9 5F 0F E9 D3 6E 06 AD   3D 67 7B 11 73 1E 78 5D  ._...n..=g..s.x]
+
+]
+
+Added certificate to keystore 'jssecacerts' using alias 'kc.deepmatrix.io-1'
+kaustubh@Kaustubhs-MacBook-Pro InstallCert % keytool -exportcert -alias kc.deepmatrix.io-1 -keystore jssecacerts -storepass changeit -file kc.deepmatrix.io.cer
+Certificate stored in file <kc.deepmatrix.io.cer>                                             
+kaustubh@Kaustubhs-MacBook-Pro InstallCert % /usr/libexec/java_home
+/Library/Java/JavaVirtualMachines/jdk-17.0.3.jdk/Contents/Home
+kaustubh@Kaustubhs-MacBook-Pro InstallCert % sudo keytool -importcert -alias kc.deepmatrix.io -keystore /Library/Java/JavaVirtualMachines/jdk-17.0.3.jdk/Contents/Home/lib/security/cacerts -storepass changeit -file kc.deepmatrix.io.cer
+Password:
+Warning: use -cacerts option to access cacerts keystore
+Owner: CN=kc.deepmatrix.io, O=DeepMatrix, L=Bengaluru, ST=Karnataka, C=IN
+Issuer: CN=kc.deepmatrix.io, O=DeepMatrix, L=Bengaluru, ST=Karnataka, C=IN
+Serial number: 4553c1f982cc97d99c99e6e6b82b1906f44fc085
+Valid from: Thu Apr 21 01:05:55 IST 2022 until: Fri Apr 21 01:05:55 IST 2023
+Certificate fingerprints:
+         SHA1: BF:AA:FE:98:05:0A:E0:D9:27:5E:C0:02:0D:92:DE:84:E8:FC:97:DD
+         SHA256: 78:D5:2A:05:9F:F0:FA:E4:A7:E6:FB:B7:45:F2:1F:64:93:47:8B:5B:E9:65:7A:08:BD:6E:D7:BC:F7:C6:0C:97
+Signature algorithm name: SHA256withRSA
+Subject Public Key Algorithm: 2048-bit RSA key
+Version: 3
+
+Extensions: 
+
+#1: ObjectId: 2.5.29.35 Criticality=false
+AuthorityKeyIdentifier [
+KeyIdentifier [
+0000: 4F 3B 61 7F 61 B9 94 48   E3 90 15 8B B6 99 0E D7  O;a.a..H........
+0010: 84 8C CD EC                                        ....
+]
+]
+
+#2: ObjectId: 2.5.29.19 Criticality=true
+BasicConstraints:[
+  CA:true
+  PathLen: no limit
+]
+
+#3: ObjectId: 2.5.29.14 Criticality=false
+SubjectKeyIdentifier [
+KeyIdentifier [
+0000: 4F 3B 61 7F 61 B9 94 48   E3 90 15 8B B6 99 0E D7  O;a.a..H........
+0010: 84 8C CD EC                                        ....
+]
+]
+
+Trust this certificate? [no]:  yes
+Certificate was added to keystore
+```
