@@ -4,3 +4,4 @@ jssecacerts
 .idea
 out/*
 *.iml
+*.cer
